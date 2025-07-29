@@ -13,6 +13,12 @@
         </div>
         
         <div class="content content-large">
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="error-message" style="color: red; margin-bottom: 15px; padding: 10px; background-color: #ffe6e6; border: 1px solid #ff9999; border-radius: 5px;">
+                    <%= error %>
+                </div>
+            <% } %>
+            
             <form action="/new" method="POST">
                 <div class="form-group">
                     <label for="user">Your Name:</label>

@@ -16,31 +16,46 @@ const messages = [
 
 // GET "/" to show all message
 router.get('/', (req, res) => {
-    res.render('index', {title: 'Mini Message Board', messages: messages});
+    try {
+        res.render('index', {title: 'Mini Message Board', messages: messages});
+    } catch (error) {
+        console.error('Error rendering index:', error);
+        res.status(500).render('404', { error: 'Failed to load messages' });
+    }
 });
 
 // GET route for the new message page
 router.get('/new', (req, res) => {
-    res.render('form');
+    try {
+        res.render('form');
+    } catch (error) {
+        console.error('Error rendering form:', error);
+        res.status(500).render('404', { error: 'Failed to load form' });
+    }
 });
 
 // POST route for form submission
 router.post('/new', (req, res) => {
-    const { user, text } = req.body;
-    
-    // Add new message to the array
-    messages.push({
-        text: text,
-        user: user,
-        added: new Date()
-    });
-    
-    res.redirect('/');
-});
-
-// 404 handler - must be at the end
-router.use('*splat', (req, res) => {
-    res.status(404).render('404');
+    try {
+        const { user, text } = req.body;
+        
+        // Validate input
+        if (!user || !text) {
+            return res.status(400).render('form', { error: 'Please fill in all fields' });
+        }
+        
+        // Add new message to the array
+        messages.push({
+            text: text,
+            user: user,
+            added: new Date()
+        });
+        
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error adding message:', error);
+        res.status(500).render('form', { error: 'Failed to add message' });
+    }
 });
 
 module.exports = router;

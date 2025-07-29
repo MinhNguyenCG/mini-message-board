@@ -17,8 +17,12 @@
                 <div class="error-code">404</div>
                 <h2 class="error-title">Page Not Found</h2>
                 <p class="error-message">
-                    The page you're looking for doesn't exist or has been moved.<br>
-                    Don't worry, you can always go back to the message board!
+                    <% if (typeof error !== 'undefined' && error) { %>
+                        <%= error %>
+                    <% } else { %>
+                        The page you're looking for doesn't exist or has been moved.<br>
+                        Don't worry, you can always go back to the message board!
+                    <% } %>
                 </p>
                 
                 <div class="error-actions">
