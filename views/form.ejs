@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Message</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container container-small">
+        <div class="header">
+            <h1>Add New Message</h1>
+        </div>
+        
+        <div class="content content-large">
+            <form action="/new" method="POST">
+                <div class="form-group">
+                    <label for="user">Your Name:</label>
+                    <input type="text" id="user" name="user" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="text">Message:</label>
+                    <textarea id="text" name="text" required placeholder="Write your message here..."></textarea>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">Submit Message</button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

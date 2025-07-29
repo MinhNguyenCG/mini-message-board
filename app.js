@@ -8,6 +8,9 @@ app.set('view engine', 'ejs');
 // Middleware for parsing JSON and urlencoded bodies
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files from public directory
+app.use(express.static('public'));
+
 // Register routes
 app.use('/', indexRouter);
 

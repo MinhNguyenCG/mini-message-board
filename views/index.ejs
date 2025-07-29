@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><%= title %></h1>
+        </div>
+        
+        <div class="content">
+            <% if (messages && messages.length > 0) { %>
+                <ul class="messages-list">
+                    <% messages.forEach(msg => { %>
+                        <li class="message-item">
+                            <div class="message-user"><%= msg.user %></div>
+                            <div class="message-text"><%= msg.text %></div>
+                            <div class="message-time">(<%= msg.added.toLocaleString() %>)</div>
+                            <a href="/messages/<%= messages.indexOf(msg) %>" class="open-btn">Open</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <div class="empty-state">
+                    <h3>No messages yet</h3>
+                    <p>Be the first to share a message!</p>
+                </div>
+            <% } %>
+            
+            <a href="/new" class="new-message-btn">Add New Message</a>
+        </div>
+    </div>
+</body>
+</html>
