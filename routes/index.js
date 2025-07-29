@@ -17,7 +17,10 @@ const messages = [
 // GET "/" to show all message
 router.get('/', (req, res) => {
     try {
-        res.render('index', {title: 'Mini Message Board', messages: messages});
+        res.render('index', {
+            title: 'Mini Message Board', 
+            messages: messages || []
+        });
     } catch (error) {
         console.error('Error rendering index:', error);
         res.status(500).render('404', { error: 'Failed to load messages' });
@@ -37,17 +40,17 @@ router.get('/new', (req, res) => {
 // POST route for form submission
 router.post('/new', (req, res) => {
     try {
-        const { user, text } = req.body;
+        const { user, text } = req.body || {};
         
         // Validate input
-        if (!user || !text) {
+        if (!user || !text || user.trim() === '' || text.trim() === '') {
             return res.status(400).render('form', { error: 'Please fill in all fields' });
         }
         
         // Add new message to the array
         messages.push({
-            text: text,
-            user: user,
+            text: text.trim(),
+            user: user.trim(),
             added: new Date()
         });
         

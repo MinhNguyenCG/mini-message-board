@@ -19,8 +19,7 @@
                         <li class="message-item">
                             <div class="message-user"><%= msg.user %></div>
                             <div class="message-text"><%= msg.text %></div>
-                            <div class="message-time">(<%= msg.added.toLocaleString() %>)</div>
-                            <a href="/messages/<%= messages.indexOf(msg) %>" class="open-btn">Open</a>
+                            <div class="message-time">(<%= msg.added ? msg.added.toLocaleString() : 'Unknown time' %>)</div>
                         </li>
                     <% }) %>
                 </ul>
